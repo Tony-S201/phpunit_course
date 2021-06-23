@@ -5,6 +5,7 @@
 * [Structure of a unit test](#Structure-of-a-unit-test)
 * [Commands](#Commands)
 * [Introduction to assertions](#Introduction-to-assertions) 
+* [Test a function of an existing file of your project](#Test-a-fonction-of-an-existing-file-of-your-project)
 
 ## Structure of a unit test
 
@@ -21,7 +22,10 @@ use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase
 {
-
+  public function test()
+  {
+  
+  }
 }
 ```
 
@@ -31,4 +35,53 @@ class ExampleTest extends TestCase
 > $phpunit tests/ExampleTest.php
 
 ## Introduction to assertions
+
+An assertion basically verifies that some condition is true in a test.
+
+For example, let's check that 2 + 2 = 4 :
+
+```php
+<?php
+
+use PHPUnit\Framework\TestCase;
+
+class ExampleTest extends TestCase
+{
+  public function testAddingTwoPlusTwoResultsInFour()
+  {
+    $this->assertEquals(4, 2 + 2);
+  }
+}
+```
+
+## Test a function of an existing file of your project
+
+So, we have this method in functions.php :
+
+```php
+<?php
+
+function add($a, $b) {
+  return $a + $b;
+}
+```
+
+And we want to check if she works correctly with multiple assertions :
+
+```php
+<?php
+
+use PHPUnit\Framework\TestCase;
+
+class ExampleTest extends TestCase
+{
+  public function testAddReturnsTheCorrectSum()
+  {
+    require 'functions.php';
+    
+    $this->assertEquals(4, add(2 + 2));
+    $this->assertEquals(8, add(4 + 4));
+  }
+}
+```
 
