@@ -135,6 +135,8 @@ class User
 }
 ```
 
+For example, we test that the getFullName() method return always the good result.
+
 *UserTest.php*
 ```php
 <?php
