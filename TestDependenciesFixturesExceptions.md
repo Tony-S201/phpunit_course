@@ -5,6 +5,7 @@
 * [Unit test a queue class](#unit-test-a-queue-class)
 * [Make one test method dependent on another](#make-one-test-method-dependent-on-another)
 * [Make the tests independents for more understanding by using a state](#make-the-tests-independents-for-more-understanding-by-using-a-state)
+* [Share fixtures between tests](#share-fixtures-between-tests)
 
 ## Unit test a queue class
 
@@ -118,7 +119,7 @@ Having dependencies like previously can make it difficult to understand where a 
 Before we had these dependencies, we were repeating code in each test that set up the data to a know state we actually made any assertions, this know state is called the fixture of the test.
 So instead of making tests dependent on each other, PHPUnit provides us with various methods to set up the know state or fixture of each test method.
 
-* The first is a method called **setUp()** and she create an empty Queue object. 
+* The first is a method called **setUp()** and she create an empty Queue object for every test. 
 * The second is a method called **tearDown()** and she destroy the object at the end of all tests.
 
 ```php
@@ -148,6 +149,54 @@ class QueueTest extends TestCase
     $this->queue->push('green');
     
     $this->assertEquals(1, $this->queue->getCount());
+  }
+}
+```
+
+## Share fixtures between tests
+
+The previously methods create a know state for each test, this is fine if you're doing something simple.
+
+But there are times when the setup code is more complicated and you might not want to call it for every test method.
+
+* So in addition to the setup and tear down methods, we also have a **setUpBeforeClass()** and a **tearDownAfterClass()** methods.
+
+These methods are just executed once the set up before class method is run, before the first test of the class is run and they tear down after class method is run afther the last test of the class.
+
+* In this case, you can **share fixtures between test methods** by using these methods.
+
+Example :
+
+```php
+use PHPUnit\Framework\TestCase;
+
+class QueueTest extends TestCase
+{
+  protected static $queue;
+  
+  protected function setUp(): void
+  {
+    static::$queue->clear();
+  }
+  public static function setUpBeforeClass(): void
+  {
+    static::$queue = new Queue;
+  }
+  public static function tearDownAfterClass(): void
+  {
+    static::$queue = null;
+  }
+
+  public function testNewQueueIsEmpty()
+  {
+    $this->assertEquals(0, static::$queue->getCount());
+  }
+  
+  public function testAnItemAddedToTheQueue()
+  {
+    static::$queue->push('green');
+    
+    $this->assertEquals(1, static::$queue->getCount());
   }
 }
 ```
