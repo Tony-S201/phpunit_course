@@ -135,7 +135,7 @@ class User
 }
 ```
 
-*FunctionTest.php*
+*UserTest.php*
 ```php
 <?php
 
