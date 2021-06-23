@@ -81,3 +81,11 @@ In this way, any classes we place in the src folder will be autoload.
 3. Pass the option to run autoload before the tests.
 
 > $ phpunit --bootstrap='vendor/autoload.php'
+
+**Notice that we can configure it in the XML configuration file**
+*phpunit.xml*
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php">
+</phpunit>
+```
