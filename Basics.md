@@ -31,7 +31,7 @@ class ExampleTest extends TestCase
 }
 ```
 
--> Notice that every test function must be public.
+> Notice that every test function must be public.
 
 ## Commands
 
