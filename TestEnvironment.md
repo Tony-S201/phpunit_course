@@ -3,6 +3,7 @@
 ## Table of content :
 * [Specify options when running tests](#specify-options-when-running-tests)
 * [Configure phpunit with an XML file](#configure-phpunit-with-an-xml-file)
+* [Autoload classes using composer](#autoload-classes-using-composer)
 
 ## Specify options when running tests
 
@@ -51,3 +52,32 @@ We can also specify what we want to test on every execution :
 ```
 
 In this case we run all the test classes in the tests folder that have the file name extension **.php**.
+
+## Autoload classes using composer
+
+Use multiple **require** can be redundant, to solve this problem composer offers several ways to **autoload classes**, so we don't have to worry about loading class files manually.
+
+1. Add the autoload in your composer package list :
+*composer.json*
+```json
+{
+  "require": {
+    "phpunit/phpunit": "^7.3"  
+  },
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    }
+  }
+}
+```
+
+In this way, any classes we place in the src folder will be autoload.
+
+2. Generate the composer autoload files :
+
+> $ composer dump-autoload
+
+3. Pass the option to run autoload before the tests.
+
+> $ phpunit --bootstrap='vendor/autoload.php'
