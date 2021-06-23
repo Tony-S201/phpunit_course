@@ -6,6 +6,7 @@
 * [Commands](#commands)
 * [Introduction to assertions](#introduction-to-assertions) 
 * [Test a function of an existing file of your project](#test-a-function-of-an-existing-file-of-your-project)
+* [Test that incorrect results are not returned using multiple tests methods](#test-that-incorrect-results-are-not-returned-using-multiple-tests-methods)
 
 ## Structure of a unit test
 
@@ -38,7 +39,7 @@ class ExampleTest extends TestCase
 
 An assertion basically verifies that some condition is true in a test.
 
-For example, let's check that 2 + 2 = 4 :
+For example, let's check that 2 + 2 = 4, we can use **->assertEquals()** :
 
 ```php
 <?php
@@ -85,3 +86,28 @@ class ExampleTest extends TestCase
 }
 ```
 
+## Test that incorrect results are not returned using multiple tests methods
+
+We can check that incorrect result is not returned using **->assertNotEquals()** :
+
+```php
+<?php
+
+use PHPUnit\Framework\TestCase;
+
+class ExampleTest extends TestCase
+{
+  public function testAddReturnsTheCorrectSum()
+  {
+    require 'functions.php';
+    
+    $this->assertEquals(4, add(2 + 2));
+    $this->assertEquals(8, add(4 + 4));
+  }
+  
+  public function testAddDoesntReturnTheIncorrectSum()
+  {
+    $this->assertNotEquals(5, add(2, 2));
+  }
+}
+```
