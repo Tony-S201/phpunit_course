@@ -2,6 +2,7 @@
 
 ## Table of content :
 * [Specify options when running tests](#specify-options-when-running-tests)
+* [Configure phpunit with an XML file](#configure-phpunit-with-an-xml-file)
 
 ## Specify options when running tests
 
