@@ -3,6 +3,7 @@
 ## Table of content :
 
 * [Unit test a queue class](#unit-test-a-queue-class)
+* [Make one test method dependent on another](#make-one-test-method-dependent-on-another)
 
 ## Unit test a queue class
 
@@ -75,3 +76,37 @@ class QueueTest extends TestCase
   }
 }
 ```
+
+## Make one test method dependent on another
+
+We can pass the sames items into differents tests to make it dependent on anothers.
+
+For example, here in the second test, if we need to receive the same Queue object, we can pass it by adding a docblock property **@depends** and **the object to argument**.
+
+> Notice we need to return the object in first method to access it in the second.
+
+```php
+use PHPUnit\Framework\TestCase;
+
+class QueueTest extends TestCase
+{
+  public function testNewQueueIsEmpty()
+  {
+    $queue = new Queue;
+    
+    $this->assertEquals(0, $queue->getCount());
+    
+    return $queue;
+  }
+  /**
+  * @depends testNewQueueIsEmpty
+  */
+  public function testAnItemAddedToTheQueue(Queue $queue)
+  {
+    $queue->push('green');
+    
+    $this->assertEquals(1, $queue->getCount());
+  }
+}
+```
+
