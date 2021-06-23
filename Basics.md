@@ -135,7 +135,7 @@ class User
 }
 ```
 
-For example, we test that the getFullName() method return always the good result.
+For example, we test that the getFullName() method return always the good result, and nothing if first_name and surname are empty.
 
 *UserTest.php*
 ```php
