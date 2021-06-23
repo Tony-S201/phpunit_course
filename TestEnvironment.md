@@ -21,6 +21,8 @@
 
 ## Configure phpunit with an XML file
 
+* Documentation here : [link](https://phpunit.readthedocs.io/fr/latest/configuration.html)
+
 We can specify options directly in a XML file, this allows for example not to write the options again.
 
 Let's set the colors attribute to true :
