@@ -118,7 +118,8 @@ Having dependencies like previously can make it difficult to understand where a 
 Before we had these dependencies, we were repeating code in each test that set up the data to a know state we actually made any assertions, this know state is called the fixture of the test.
 So instead of making tests dependent on each other, PHPUnit provides us with various methods to set up the know state or fixture of each test method.
 
-The first is a method called **setUp()** and she create an empty Queue object, the second is a method called **tearDown()** and she destroy the object at the end of all tests :
+* The first is a method called **setUp()** and she create an empty Queue object. 
+* The second is a method called **tearDown()** and she destroy the object at the end of all tests.
 
 ```php
 use PHPUnit\Framework\TestCase;
