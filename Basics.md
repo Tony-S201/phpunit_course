@@ -2,10 +2,10 @@
 
 ## Table of content :
 
-* [Structure of a unit test](#Structure-of-a-unit-test)
-* [Commands](#Commands)
-* [Introduction to assertions](#Introduction-to-assertions) 
-* [Test a function of an existing file of your project](#Test-a-fonction-of-an-existing-file-of-your-project)
+* [Structure of a unit test](#structure-of-a-unit-test)
+* [Commands](#commands)
+* [Introduction to assertions](#introduction-to-assertions) 
+* [Test a function of an existing file of your project](#test-a-fonction-of-an-existing-file-of-your-project)
 
 ## Structure of a unit test
 
