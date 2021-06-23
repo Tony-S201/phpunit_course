@@ -6,6 +6,7 @@
 * [Make one test method dependent on another](#make-one-test-method-dependent-on-another)
 * [Make the tests independents for more understanding by using a state](#make-the-tests-independents-for-more-understanding-by-using-a-state)
 * [Share fixtures between tests](#share-fixtures-between-tests)
+* [Expecting code to throw an exception](#expecting-code-to-throw-an-exception)
 
 ## Unit test a queue class
 
@@ -200,3 +201,61 @@ class QueueTest extends TestCase
   }
 }
 ```
+
+## Expecting code to throw an exception
+
+We can add a call to the exception and the expected exception message method to check for that message or exception.
+
+Two new methods to do this :
+
+* **expectException()**
+* **expectExceptionMessage()**
+
+For example :
+
+1. We create an exception message when the queue have one item.
+
+*src/Queue.php*
+```php
+/**
+* Add an item to the end of the queue
+* @params mixed
+*
+* @throws QueueException
+*
+**/
+public function push($item)
+{
+  $this->items[] = $item;
+
+  if($this->getCount() == 1) {
+    throw new QueueException("Queue is full");
+  }
+}
+```
+
+2. Create the custom exception class
+
+*src/QueueException.php*
+```php
+<?php
+
+class QueueException extends Exception
+{
+}
+```
+
+3. Expect the exception and exception message in your test
+
+*tests/QueueTest.php*
+```php
+public function testExceptionsQueueItems()
+{
+  $this->queue->push('green');
+  
+  $this->expectException(QueueException::class);
+  $this->expectExceptionMessage("Queue is full");
+}
+```
+
+If there are exception and exception message 'Queue is full', the tests are passed without failure.
