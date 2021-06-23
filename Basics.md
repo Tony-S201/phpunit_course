@@ -7,6 +7,7 @@
 * [Introduction to assertions](#introduction-to-assertions) 
 * [Test a function of an existing file of your project](#test-a-function-of-an-existing-file-of-your-project)
 * [Test that incorrect results are not returned using multiple tests methods](#test-that-incorrect-results-are-not-returned-using-multiple-tests-methods)
+* [Test a class](#test-a-class)
 
 ## Structure of a unit test
 
@@ -113,3 +114,50 @@ class ExampleTest extends TestCase
   }
 }
 ```
+
+## Test a class
+
+Instead of function, we can test everything we want in a class.
+
+*User.php*
+```php
+<?php
+
+class User
+{
+  public $first_name;
+  public $surname;
+  
+  public function getFullName()
+  {
+    return trim("$this->first_name $this->surname");
+  }
+}
+```
+
+*FunctionTest.php*
+```php
+<?php
+
+class UserTest extends PHPUnit\Framework\TestCase
+{
+  public function testReturnsFullName()
+  {
+    require 'User.php';
+    
+    $user = new User;
+    $user->first_name = "Teresa";
+    $user->surname = "Green";
+    
+    $this->assertEquals('Teresa Green', $user->getFullName());
+  }
+  
+  public function testFullNameIsEmptyByDefault()
+  {
+    $user = new User;
+    
+    $this->assertEquals('', $user->getFullName());
+  }
+}
+```
+
