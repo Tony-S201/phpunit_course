@@ -4,7 +4,7 @@
 
 * [Unit test a queue class](#unit-test-a-queue-class)
 * [Make one test method dependent on another](#make-one-test-method-dependent-on-another)
-* [Make the tests independents for more understanding](#make-the-tests-independents-for-more-understanding)
+* [Make the tests independents for more understanding by using a state](#make-the-tests-independents-for-more-understanding-by-using-a-state)
 
 ## Unit test a queue class
 
@@ -111,7 +111,7 @@ class QueueTest extends TestCase
 }
 ```
 
-## Make the tests independents for more understanding using a state
+## Make the tests independents for more understanding by using a state
 
 Having dependencies like previously can make it difficult to understand where a test's data coming from.
 
