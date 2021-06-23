@@ -5,7 +5,7 @@
 * [Structure of a unit test](#structure-of-a-unit-test)
 * [Commands](#commands)
 * [Introduction to assertions](#introduction-to-assertions) 
-* [Test a function of an existing file of your project](#test-a-fonction-of-an-existing-file-of-your-project)
+* [Test a function of an existing file of your project](#test-a-function-of-an-existing-file-of-your-project)
 
 ## Structure of a unit test
 
