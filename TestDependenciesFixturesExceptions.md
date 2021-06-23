@@ -4,6 +4,7 @@
 
 * [Unit test a queue class](#unit-test-a-queue-class)
 * [Make one test method dependent on another](#make-one-test-method-dependent-on-another)
+* [Make the tests independents for more understanding](#make-the-tests-independents-for-more-understanding)
 
 ## Unit test a queue class
 
@@ -110,3 +111,42 @@ class QueueTest extends TestCase
 }
 ```
 
+## Make the tests independents for more understanding using a state
+
+Having dependencies like previously can make it difficult to understand where a test's data coming from.
+
+Before we had these dependencies, we were repeating code in each test that set up the data to a know state we actually made any assertions, this know state is called the fixture of the test.
+So instead of making tests dependent on each other, PHPUnit provides us with various methods to set up the know state or fixture of each test method.
+
+The first is a method called **setUp()** and she create an empty Queue object, the second is a method called **tearDown()** and she destroy the object at the end of all tests :
+
+```php
+use PHPUnit\Framework\TestCase;
+
+class QueueTest extends TestCase
+{
+  protected $queue;
+  
+  protected function setUp(): void
+  {
+    $this->queue = new Queue;
+  }
+  
+  protected function tearDown(): void
+  {
+    unset($this->queue);
+  }
+
+  public function testNewQueueIsEmpty()
+  {
+    $this->assertEquals(0, $this->queue->getCount());
+  }
+  
+  public function testAnItemAddedToTheQueue()
+  {
+    $this->queue->push('green');
+    
+    $this->assertEquals(1, $this->queue->getCount());
+  }
+}
+```
