@@ -37,6 +37,8 @@ class ExampleTest extends TestCase
 
 ## Introduction to assertions
 
+- **All assertions methods list from official documentation** : [link](https://phpunit.readthedocs.io/fr/latest/assertions.html)
+
 An assertion basically verifies that some condition is true in a test.
 
 For example, let's check that 2 + 2 = 4, we can use **->assertEquals()** :
